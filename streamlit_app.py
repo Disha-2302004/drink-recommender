@@ -121,26 +121,7 @@ def notebook_page():
         st.subheader("🥤 Top Recommendations")
         st.table(results[["ProductName", "FlavorProfile", "UseCase", "HealthTags", "Type", "score"]])
 
-     # --- Notebook Page (Recommendation) ---
-def notebook_page1():
-    st.markdown("<h2 style='text-align: center;'>🥤 Personalized Drink Recommender</h2>", unsafe_allow_html=True)
-    user_query = st.text_input("✨ Describe your drink preference (e.g., low sugar ginger caffeine-free)")
-    if st.button("🔍 Get Recommendations"):
-        if user_query:
-            recs = get_recommendations(user_query, top_k=5)
-            st.subheader("🥇 Top Recommended Drinks")
-            for _, row in recs.iterrows():
-                st.markdown(f"""
-                <div style='background: #f8f9fa; padding:15px; border-radius:12px; margin-bottom:10px; 
-                box-shadow: 2px 2px 5px #ddd;'>
-                <h4>🍹 {row['Drink_Name']}</h4>
-                <b>Flavor:</b> {row['Flavor']}<br>
-                <b>Ingredients:</b> {row['Ingredients']}<br>
-                <b>Category:</b> {row['Category']}
-                </div>
-                """, unsafe_allow_html=True)
-        else:
-            st.warning("✍️ Please enter your drink preference first.")
+   
 
 def feedback_page():
     st.markdown("<h2 style='text-align: center;'>💬 Feedback</h2>", unsafe_allow_html=True)
@@ -155,7 +136,7 @@ def feedback_page():
 # -------------------------
 # Navigation
 # -------------------------
-PAGES = {"Login": login_page, "Recommend_drinks": notebook_page1, "Feedback": feedback_page}
+PAGES = {"Login": login_page, "Recommend_drinks": notebook_page, "Feedback": feedback_page}
 
 choice = st.sidebar.radio("Navigation", list(PAGES.keys()))
 if choice == "Login":
