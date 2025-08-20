@@ -87,18 +87,19 @@ def evaluate_model(user_input, query_embedding, k=5):
 # Streamlit Pages
 # -------------------------
 def login_page():
-    st.title("🔐 Login")
-    if "logged_in" not in st.session_state:
-        st.session_state["logged_in"] = False
+    st.markdown("<h2 style='text-align: center;'>🔐 Login to Drink Recommender</h2>", unsafe_allow_html=True)
 
-    if not st.session_state["logged_in"]:
-        user = st.text_input("Username")
-        pwd = st.text_input("Password", type="password")
-        if st.button("Login"):
-            st.session_state["logged_in"] = True
-            st.success("Logged in successfully!")
-    else:
-        st.success("You are already logged in.")
+    st.write("")
+    col1, col2, col3 = st.columns([1,2,1])
+    with col2:
+        username = st.text_input("👤 Username")
+        password = st.text_input("🔑 Password", type="password")
+        if st.button("🚀 Login", use_container_width=True):
+            if username and password:
+                st.success("Welcome! Redirecting to Notebook Page...")
+                st.session_state["page"] = "Notebook"
+            else:
+                st.error("⚠️ Please enter both username and password")
 
 def notebook_page():
     st.title("📒 Personalized Drink Recommendation")
@@ -120,21 +121,17 @@ def notebook_page():
         st.subheader("🥤 Top Recommendations")
         st.table(results[["ProductName", "FlavorProfile", "UseCase", "HealthTags", "Type", "score"]])
 
-        eval_metrics = evaluate_model(user_input, query_embedding, top_k)
-        if eval_metrics["precision"] is not None:
-            st.subheader("📊 Evaluation Metrics")
-            st.write(f"Precision: {eval_metrics['precision']:.2f}")
-            st.write(f"Recall: {eval_metrics['recall']:.2f}")
-            st.write(f"F1 Score: {eval_metrics['f1']:.2f}")
-        else:
-            st.info("No relevant items found for evaluation.")
+     
 
 def feedback_page():
-    st.title("📝 Feedback")
-    fb = st.text_area("Share your feedback")
-    rating = st.slider("Rate us", 1, 5, 3)
-    if st.button("Submit Feedback"):
-        st.success("Thank you for your feedback!")
+    st.markdown("<h2 style='text-align: center;'>💬 Feedback</h2>", unsafe_allow_html=True)
+    st.write("We’d love your feedback on the recommendations!")
+
+    feedback = st.radio("How was your experience?", ["😍 Loved it", "👍 Good", "🤔 Okay", "👎 Bad"])
+    comments = st.text_area("✍️ Additional Comments")
+
+    if st.button("✅ Submit Feedback", use_container_width=True):
+        st.success("🎉 Thanks for your feedback!")
 
 # -------------------------
 # Navigation
