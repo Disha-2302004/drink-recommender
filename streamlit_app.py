@@ -97,7 +97,7 @@ def login_page():
         if st.button("🚀 Login", use_container_width=True):
             if username and password:
                 st.success("Welcome! Redirecting to Notebook Page...")
-                st.session_state["page"] = "Notebook"
+                st.session_state["page"] = "Recommend_drinks"
             else:
                 st.error("⚠️ Please enter both username and password")
 
