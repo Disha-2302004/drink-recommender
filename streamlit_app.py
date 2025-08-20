@@ -139,7 +139,7 @@ def feedback_page():
 # -------------------------
 # Navigation
 # -------------------------
-PAGES = {"Login": login_page, "Notebook": notebook_page, "Feedback": feedback_page}
+PAGES = {"Login": login_page, "Recommendation": notebook_page, "Feedback": feedback_page}
 
 choice = st.sidebar.radio("Navigation", list(PAGES.keys()))
 if choice == "Login":
