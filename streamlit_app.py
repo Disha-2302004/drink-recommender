@@ -120,14 +120,7 @@ def notebook_page():
         st.subheader("🥤 Top Recommendations")
         st.table(results[["ProductName", "FlavorProfile", "UseCase", "HealthTags", "Type", "score"]])
 
-        eval_metrics = evaluate_model(user_input, query_embedding, top_k)
-        if eval_metrics["precision"] is not None:
-            st.subheader("📊 Evaluation Metrics")
-            st.write(f"Precision: {eval_metrics['precision']:.2f}")
-            st.write(f"Recall: {eval_metrics['recall']:.2f}")
-            st.write(f"F1 Score: {eval_metrics['f1']:.2f}")
-        else:
-            st.info("No relevant items found for evaluation.")
+        
 
 def feedback_page():
     st.title("📝 Feedback")
