@@ -134,12 +134,12 @@ def feedback_page():
     fb = st.text_area("Share your feedback")
     rating = st.slider("Rate us", 1, 5, 3)
     if st.button("Submit Feedback"):
-        st.success("Thank you for your feedback! (Not stored)")
+        st.success("Thank you for your feedback!")
 
 # -------------------------
 # Navigation
 # -------------------------
-PAGES = {"Login": login_page, "Notebook": notebook_page, "Feedback": feedback_page}
+PAGES = {"Login": login_page, "Recommend_drinks": notebook_page, "Feedback": feedback_page}
 
 choice = st.sidebar.radio("Navigation", list(PAGES.keys()))
 if choice == "Login":
