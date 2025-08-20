@@ -134,7 +134,7 @@ def feedback_page():
     fb = st.text_area("Share your feedback")
     rating = st.slider("Rate us", 1, 5, 3)
     if st.button("Submit Feedback"):
-        st.success("Thank you for your feedback! (Not stored)")
+        st.success("Thank you for your feedback!")
 
 # -------------------------
 # Navigation
